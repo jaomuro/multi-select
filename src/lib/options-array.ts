@@ -6,7 +6,7 @@ export function getArrayPopulated() {
   // Gerar objetos para afetação parcial
   for (let i = 1; i <= 16; i++) {
     options.push({
-      label: i.toString(),
+      label: 'Pon ' + i.toString() + ' parcial',
       value: i.toString() + '-partial',
       ponNumber: i.toString(),
       isTotalAffected: false,
@@ -17,7 +17,7 @@ export function getArrayPopulated() {
   // Gerar objetos para afetação total
   for (let i = 1; i <= 16; i++) {
     options.push({
-      label: i.toString(),
+      label: 'Pon ' + i.toString() + ' total',
       value: i.toString() + '-total',
       ponNumber: i.toString(),
       isTotalAffected: true,
