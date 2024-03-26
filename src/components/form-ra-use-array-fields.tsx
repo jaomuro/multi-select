@@ -16,6 +16,7 @@ import MultipleSelector from '@/components/ui/multiple-selector'
 import { getArrayPopulated } from '@/lib/options-array'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
+import { X } from 'lucide-react'
 
 const OPTIONS = getArrayPopulated()
 
@@ -50,7 +51,7 @@ const FormRAArrayfield = () => {
     handleSubmit,
     formState: { errors },
   } = form
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'isRaDisaster',
   })
@@ -73,6 +74,10 @@ const FormRAArrayfield = () => {
     }, 500)
   }
 
+  const handleRemoveFields = (index: number) => {
+    remove(index)
+  }
+
   const handleAddFields = () => {
     append({ lamNumber: 0, affectedPon: [] })
   }
@@ -82,6 +87,16 @@ const FormRAArrayfield = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="w-2/3 space-y-6">
         {fields.map((item, index) => (
           <div key={item.id}>
+            {index !== 0 && (
+              <Button
+                variant="destructive"
+                type="button"
+                size="xs"
+                onClick={() => handleRemoveFields(index)}
+              >
+                <X size={20} />
+              </Button>
+            )}
             <FormField
               control={control}
               name={`isRaDisaster.${index}.lamNumber`}
